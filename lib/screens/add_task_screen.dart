@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoey_flutter/models/task.dart';
+import 'package:todoey_flutter/models/task_data.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatelessWidget {
   final Function addTaskCallback;
@@ -40,8 +42,8 @@ class AddTaskScreen extends StatelessWidget {
                 }),
             GestureDetector(
               onTap: () {
-                // tasks.add(Task(name: newTaskTitle));
-                addTaskCallback(newTaskTitle);
+                Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
+                Navigator.pop(context);
               },
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 120.0),
